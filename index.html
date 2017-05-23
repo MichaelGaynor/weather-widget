@@ -13,6 +13,65 @@
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 
+// context.strokeStyle = '#FF0000';
+// context.lineWidth = 10;
+// context.lineTo(200,100);
+// context.lineTo(200,200);
+// context.lineTo(300,100);
+// context.lineTo(300,150);
+// context.lineTo(200,200);
+// context.stroke()
+// context.closePath();
+
+
+// context.arc(75,75,75,0*Math.PI,2*Math.PI);
+// context.fillStyle= '#0000FF';
+// context.fill();
+
+function Ball(x,y,radius,r,g,b){
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.startArc = 0;
+    this.endArc = Math.PI * 2;
+    this.xDirection = 1;
+    this.yDirection = 1;
+}
+
+Ball.prototype.updateBall = function(){
+    if(this.x >= 500){
+        this.xDirection = -1;
+    }else if(this.x <= 0){
+        this.xDirection = 1;
+    }
+    if(this.y >= 500){
+        this.yDirection = -1;
+    }else if(this.y <= 0){
+        this.yDirection = 1;
+    }
+    this.x += this.xDirection;
+    this.y += this.yDirection;
+}
+
+Ball.prototype.draw = function(){
+    context.fillStyle = '#' + this.r + this.g + this.b;
+    context.beginPath();
+    context.arc(this.x,this.y,this.radius,this.startArc,this.endArc);
+    context.fill();
+}
+
+function run(){
+    context.clearRect(0,0,500,500);
+    blackBall.updateBall();
+    blackBall.draw();
+    requestAnimationFrame(run);
+}
+
+var blackBall = new Ball(50,150,75,0,0,255);
+run();
 
 
 </script>
