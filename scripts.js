@@ -2,6 +2,12 @@ $(document).ready(()=>{
 
     const weatherApi ='http://api.openweathermap.org/data/2.5/weather';
 
+    var canvas = $('#weather-canvas');
+    var context = canvas[0].getContext('2d');
+    var assumedTemperature = 65;
+    var currentPercent = 0;
+    line = 2;
+
     $('#weather-form').submit(()=>{
         event.preventDefault();
         var zipCode = $('#zip-code').val();
@@ -15,6 +21,7 @@ $(document).ready(()=>{
             var newHtml = '<img src="http://openweathermap.org/img/w/' +icon+ '">';
             newHtml +='<div>' +name+ ' is currently ' +currTemp+ '&deg; F</div>';
             $('#temp-info').html(newHtml);
+            context.clearRect(0,0,1000,1000);
             currentPercent = 0;
             lineWidth = 2;
             animateCircle(0,currTemp);
@@ -22,11 +29,11 @@ $(document).ready(()=>{
     })
 
 
-    var canvas = $('#weather-canvas');
-    var context = canvas[0].getContext('2d');
-    var assumedTemperature = 65;
-    var currentPercent = 0;
-    line = 2;
+    // var canvas = $('#weather-canvas');
+    // var context = canvas[0].getContext('2d');
+    // var assumedTemperature = 65;
+    // var currentPercent = 0;
+    // line = 2;
 
     function animateCircle(currentArc, currentTemp){
         context.fillStyle = '#395E66';

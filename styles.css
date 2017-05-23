@@ -1,5 +1,7 @@
 body{
-    background-color: #64E0DA;
+    background-color: #204745;
+    font-family: sans-serif;
+    color: white;
     /* #387D7A */
 }
 
@@ -15,4 +17,16 @@ body{
     font-size: 1.3em;
     /* margin-top: 105px; */
     text-align: center;
+}
+
+button{
+    border: none;
+    background-color: #26A96C;
+    color: white;
+    height: 25px;
+}
+input{
+    background-color: #395E66;
+    border: none;
+    height: 25px;
 }
