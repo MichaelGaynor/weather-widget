@@ -13,9 +13,10 @@ $(document).ready(()=>{
             var name = weatherData.name;
             var icon = weatherData.weather[0].icon + '.png';
             var newHtml = '<img src="http://openweathermap.org/img/w/' +icon+ '">';
-            newHtml +='<div>the temp in ' +name+ ' is currently ' +currTemp+ '&deg;</div>';
+            newHtml +='<div>' +name+ ' is currently ' +currTemp+ '&deg; F</div>';
             $('#temp-info').html(newHtml);
             currentPercent = 0;
+            lineWidth = 2;
             animateCircle(0,currTemp);
         })
     })
@@ -25,6 +26,7 @@ $(document).ready(()=>{
     var context = canvas[0].getContext('2d');
     var assumedTemperature = 65;
     var currentPercent = 0;
+    line = 2;
 
     function animateCircle(currentArc, currentTemp){
         context.fillStyle = '#395E66';
@@ -33,12 +35,13 @@ $(document).ready(()=>{
         context.closePath();
         context.fill();
 
-        context.lineWidth = 20;
-        context.strokeStyle = '#2BC016';
+        context.lineWidth = line;
+        context.strokeStyle = '#32936F';
         context.beginPath();
         context.arc(155,175,80,Math.PI*1.5,(Math.PI*2*currentArc)+(Math.PI*1.5));
         context.stroke();
         currentPercent++
+        line++
         if(currentPercent < currentTemp){
             requestAnimationFrame(()=>{
                 animateCircle(currentPercent/100,currentTemp);
