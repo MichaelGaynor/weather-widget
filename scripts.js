@@ -6,7 +6,7 @@ $(document).ready(()=>{
     var context = canvas[0].getContext('2d');
     var assumedTemperature = 65;
     var currentPercent = 0;
-    line = 2;
+    line = 10;
 
     $('#weather-form').submit(()=>{
         event.preventDefault();
@@ -23,7 +23,7 @@ $(document).ready(()=>{
             $('#temp-info').html(newHtml);
             context.clearRect(0,0,1000,1000);
             currentPercent = 0;
-            lineWidth = 2;
+            line = 10;
             animateCircle(0,currTemp);
         })
     })
